@@ -1,10 +1,10 @@
 class UrlMappings {
 
 	static mappings = {
-        "/$controller/$action?/$id?(.$format)?"{
-            constraints {
-                // apply constraints here
-            }
+	
+	
+	    "/rest/auth/session"(controller:"authentication", parseRequest = false) {
+			action = [GET:"save", PUT:"update", DELETE:"delete", POST:"show"]      
         }
 
         "/"(view:"/index")
