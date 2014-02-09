@@ -8,28 +8,40 @@ class AuthenticationController {
 
      def show = { 
 	 
-		/*Member memb = new Member(nickname:"Elytio",password:"tulorapa",firstName:"R",lastName:"Thib",email:"thy@moi.fr",photo:"ddsdsd",birthday:new Date(),score:99)
-		if (!memb.save()){
-			memb.errors.each {
-				println it
-			}
-		} */
-		
-		//println request.getReader().text
+		// Get request text and parse it with JSON
 		String txt = request.getReader().text
-		def result = new JsonSlurper().parseText(txt)
-		Member[] m = Member.where {
-            nickname == result.username && password == result.password
-        }.findAll()	
+		def result = null
+		try
+		{
+			result = new JsonSlurper().parseText(txt)
+		}
+		catch (IllegalArgumentException iae )
+		{
+			response.status = 400
+			println "Request authentication fail ( invalid JSON text) "+new Date()// WWBD 
+			render ([error:'Bad JSON request'] as JSON )
+			return
+		}
+		
+		
+		// Search member with this username and this password
+		def c = Member.createCriteria()
+		Member[] m = c.list() {
+					eq('nickname',"${result.username}")
+					eq('password',new String(result.password.decodeBase64()))
+					}
+		//No user with this login			
 		if ( m.size() < 1 )
 		{
 			response.status = 401
+			println "Request authentication fail ( no user ) "+new Date()// WWBD 
 			render ([error:'Bad combinaison login/password'] as JSON )
 		}
 		else
 		{
 			response.status = 200
-			render (m as JSON)
+			println "Request authentication success "+new Date()// WWBD 
+			render (m[0] as JSON)			
 		} 
 		
 		

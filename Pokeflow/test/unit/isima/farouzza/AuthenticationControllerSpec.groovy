@@ -10,7 +10,15 @@ import spock.lang.Specification
 class AuthenticationControllerSpec extends Specification {
 
     def setup() {
-	//new Member(nickname:"Elytio",password:"tulorapa",firstName:"R",lastName:"Thib",email:"thy@moi.fr",photo:"ddsdsd",birthday:new Date(),score=99).save();
+	
+		Member memb = new Member(nickname:"Elytio",password:"tulorapa",firstName:"R",lastName:"Thib",email:"thy43@hotmail.fr",photo:"",birthday:new Date(1990,11,3),score:0)
+		if (!memb.save()){
+			memb.errors.each {
+				println it
+			}
+		} 
+
+		
 		
 	
 	
