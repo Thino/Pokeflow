@@ -6,6 +6,12 @@ class Tag {
 	String name;	
 	
 	static belongsTo = [question:Question]
+	
+	 @Override
+	 public String toString() {
+		return name
+  }
+	
 
     static constraints = {
     }

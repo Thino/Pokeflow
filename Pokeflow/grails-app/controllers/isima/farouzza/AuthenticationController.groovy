@@ -21,20 +21,19 @@ class AuthenticationController {
 			println "Request authentication fail ( invalid JSON text) "+new Date()// WWBD 
 			render ([error:'Bad JSON request'] as JSON )
 			return
-		}
-		
+		}	
 		
 		// Search member with this username and this password
 		def c = Member.createCriteria()
 		Member[] m = c.list() {
-					eq('nickname',"${result.username}")
-					eq('password',new String(result.password.decodeBase64()))
+					eq('nickname',result.username)
+					eq('password',result.password)
 					}
 		//No user with this login			
 		if ( m.size() < 1 )
 		{
 			response.status = 401
-			println "Request authentication fail ( no user ) "+new Date()// WWBD 
+			println "Request authentication fail ( no user/password corresponding ) "+new Date()// WWBD 
 			render ([error:'Bad combinaison login/password'] as JSON )
 		}
 		else

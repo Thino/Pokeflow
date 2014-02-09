@@ -28,8 +28,6 @@ class AuthenticationControllerSpec extends Specification {
     }
 
     void "test auth"() {
-		
-	
 	
 	
 	

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+		<title>PokéFlow</title>
+		<link rel="stylesheet" href="../css/style_main.css" />
+		<link rel="stylesheet" href="../css/style_ask.css" />
+		<script src="script/jquery-2.1.0.min.js"></script>
+		<script src="script/script_main.js"></script>
+		<script src="script/cookies.js"></script>
+		<script src="script/rest.js"></script>
+		<script src="script/common.js"></script>
+		<script src="script/ask.js"></script>
+	</head>
+	<body>
+	
+		<header>
+			<script src="header.html"></script>
+			<script src="script/onload.js"></script>
+		</header>
+		
+		<section>
+			<h1>Ask a question</h1>
+			<form>
+				<table>
+					<tr>
+						<td>Subject : </td>
+						<td><input type=text id="subject"></td>
+					</tr>
+					<tr>
+						<td>Text : </td>
+						<td><textarea id="text"></textarea></td>
+					</tr>
+					<tr>
+						<td>Tags (split with a space) : </td>
+						<td><input type=text id="tags"></td>
+					</tr>
+					<tr>
+						<td colspan=2><input id="post" type="button" value="Post" onclick="ask();"></td>
+					</tr>
+				</table>
+			</form>
+			<div id="back">
+				<a href="index.html">Back</a>
+			</div>
+		</section>
+		
+		<footer>
+			<p> © Rouchouse, Faure, Vallazza </p>
+		</footer>
+		
+	</body>
+</html>

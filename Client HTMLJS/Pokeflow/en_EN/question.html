@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+		<title>PokéFlow</title>
+		<link rel="stylesheet" href="../css/style_main.css" />
+		<link rel="stylesheet" href="../css/style_question.css" />
+		<script src="script/jquery-2.1.0.min.js"></script>
+		<script src="script/script_main.js"></script>
+		<script src="script/cookies.js"></script>
+		<script src="script/rest.js"></script>
+		<script src="script/common.js"></script>
+		<script src="script/question.js"></script>
+	</head>
+	<body>
+	
+		<header>
+			<script src="header.html"></script>
+			<script src="script/onload.js"></script>
+		</header>
+		
+		<!-- Question and answers come here-->
+		<section id="mainSec">
+			<div id="top">
+				<p id="title"></p><p id="author"></p>
+				<a href="index.html">Back</a>
+			</div>
+			
+			<form id="addAnswer">
+				<table>
+					<tr>
+						<td>Answer to : </td>
+						<td><p id="author"></p></td>
+					</tr>
+					<tr>
+						<td>Answer : </td>
+						<td><textarea id="answer"></textarea></td>
+					</tr>
+					<tr>
+						<td colspan=2><input id="post" type=button value="Post"></td>
+					</tr>
+				</table>
+			</form>
+			
+			<div id="question">
+				<div class="text">
+					<p></p>
+				</div>
+				<div id="tags">
+					<p></p>
+				</div>
+				<div class="edit">
+					<img alt="edit" src="../img/edit.png" onclick="displayEdit();"/>
+					<form>
+						<textarea cols="95" rows="5"></textarea>
+						<input id="postModif" type=button value="Save" onclick="edit();">
+					</form>
+				</div>
+				<img id="reply" alt="reply" src="../img/reply.png" onclick="displayAddAnswer();" />
+				<img id="delete" alt="delete" src="../img/delete.png" onclick="deletePost();" />
+			</div>
+			
+		</section>
+		
+		<footer>
+			<p> © Rouchouse, Faure, Vallazza </p>
+		</footer>
+		
+	</body>
+</html>

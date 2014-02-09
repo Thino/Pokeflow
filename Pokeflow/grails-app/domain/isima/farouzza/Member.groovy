@@ -12,6 +12,8 @@ class Member {
 	
 	String email
 	
+	boolean admin = false
+	
 	String photo = ""
 	
 	Date birthday

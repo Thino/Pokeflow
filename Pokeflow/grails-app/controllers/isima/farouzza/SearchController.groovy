@@ -8,9 +8,10 @@ class SearchController {
 
 		
 
+
     def show = { 
 	
-		List<Response> responses = new ArrayList<Response>()
+		
 		// Get request text and parse it with JSON
 		String txt = request.getReader().text
 		def result = null
@@ -29,23 +30,26 @@ class SearchController {
 		Question[] qs 
 		
 		// Search question witch contains the asked string
-		if ( result.request != null )
+		if ( result.request != null && result.request.trim().length() )
 		{
-			def c = Question.createCriteria()
+			def c = Question.createCriteria()			
 			qs =  c.list(max:result.maxResults, offset:result.startAt) {
-					or {
+					or {				
 					ilike('title', "%${result.request}%")
-					ilike('text', "%${result.request}%")			
+					ilike('text', "%${result.request}%")											
 					}	
 			}					
 		}		
-		else
-		{		
+		else	
+		{			
 			qs = Question.list()
+			//println qs[1].tags
 		}
 		
+		
+		
 		// Sort by note
-		qs.sort { it.getNote() }	
+		qs.sort()
 		qs.reverse(true)
 	
 		

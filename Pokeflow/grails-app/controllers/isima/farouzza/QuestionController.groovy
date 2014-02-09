@@ -5,7 +5,7 @@ import groovy.json.JsonSlurper
 
 class QuestionController {		
 
-     def show = { 
+     def create = { 
 		
 			
 		// Getting the header with authentication string
@@ -13,7 +13,7 @@ class QuestionController {
          if(!authString){  
 		 // if no header with authentication, raise error
             response.status = 401	
-			println "Request create user fail ( invalid credentials) "+new Date()			
+			println "Request create question fail ( invalid credentials) "+new Date()			
 			render ([error:'Bad combinaison login/password'] as JSON )
 			return
          }  
@@ -29,7 +29,7 @@ class QuestionController {
 		{
 			// No valid credentials, raise error
 			response.status = 401	
-			println "Request create user fail ( invalid credentials) "+new Date()			
+			println "Request create question fail ( invalid credentials) "+new Date()			
 			render ([error:'Bad combinaison login/password'] as JSON )
 			return
 		}	
@@ -38,13 +38,13 @@ class QuestionController {
 		def c = Member.createCriteria()
 		Member[] m = c.list() {
 					eq('nickname',credentials[0])
-					eq('password',credentials[1])
+					eq('password',credentials[1].bytes.encodeBase64().toString())
 					}
 		
 		if ( m.size() < 1 ) // if no member corresponding
 		{
 			response.status = 401	
-			println "Request create user fail ( invalid credentials) "+new Date()			
+			println "Request create question fail ( invalid credentials) "+new Date()			
 			render ([error:'Bad combinaison login/password'] as JSON )
 			return
 		}
@@ -60,7 +60,7 @@ class QuestionController {
 		{
 			// Bad JSON
 			response.status = 400
-			println "Request create user fail ( invalid JSON text) "+new Date()
+			println "Request create question fail ( invalid JSON text) "+new Date()
 			render ([error:'Bad JSON request'] as JSON )
 			return
 		}	
@@ -86,4 +86,5 @@ class QuestionController {
 		response.status = 200		
 		render "{\"id\":\"${String.valueOf(q.id) }\"}" 		
 	} 
+
 }

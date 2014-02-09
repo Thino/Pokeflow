@@ -15,10 +15,10 @@ abstract class Post {
 	{
 		int note = 0
 		for ( v in votes )
-			note=v.value?++note:--note
-		
+			note=v.value?++note:--note		
 		return note
-	}
+	}	
+	
 	
     static constraints = {		
 		text(blank:false,minLength:10,maxLength:1000)

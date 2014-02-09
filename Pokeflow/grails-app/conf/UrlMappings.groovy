@@ -2,14 +2,24 @@ class UrlMappings {
 
 	static mappings = {	
 	
+		"/rest/api/post/$id"(controller:"post", parseRequest = false) {
+			action = [DELETE:"delete"]      
+        }
 	
-		"/rest/api/post/$id/answers"(controller:"answer", parseRequest = false) {
+	
+		"/rest/api/user/${id}"(controller:"member", parseRequest = false) {
+			action = [PUT:"update"]      
+        }
+		
+		"/rest/api/post/${id}/answers"(controller:"answer", parseRequest = false) {
 			action = [GET:"give"]      
         }
 	
-		"/rest/api/question/$id"(controller:"getQuestion", parseRequest = false) {
+		"/rest/api/question/${id}"(controller:"getQuestion", parseRequest = false) {
 			action = [GET:"give"]      
         }	
+		
+		
 	
 	    "/rest/auth/session"(controller:"authentication", parseRequest = false) {
 			action = [POST:"show"]      
@@ -20,8 +30,9 @@ class UrlMappings {
         }
 		
 		"/rest/api/question"(controller:"question", parseRequest = false) {
-			action = [POST:"show"]      
+			action = [POST:"create"]      
         }
+		
 		
 		
 		

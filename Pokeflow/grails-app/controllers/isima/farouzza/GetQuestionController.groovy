@@ -7,7 +7,8 @@ class GetQuestionController {
     def give = {
 		// Render the question with the id of the URL
 		Question q = Question.get(params.id)
-		render (q as JSON ) 
-	
+		render (q as JSON ) 	
 	}
+	
+	
 }
